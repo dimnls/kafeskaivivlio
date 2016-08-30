@@ -23,21 +23,32 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="./node_modules/wingcss/dist/wing.min.css"/>
+    <link rel="stylesheet" href="./node_modules/wingcss/dist/wing.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
     var currentId = 0;
+    var mailVisible = false;
       $(document).ready(function(){
         newPlace();
       });
       function newPlace() {
-        var randomId = Math.floor(Math.random() * 5) + 1;
+        var randomId = Math.floor(Math.random() * 6) + 1;
         if(randomId != currentId){
           currentId = randomId;
-          $("#content").load("places.html #"+randomId)
+          $("#content").load("places.html #"+randomId);
         } else {
           newPlace();
         }
+      }
+      function showMail() {
+        if(mailVisible) {
+          $("#mail-div").html("Ιδέα;");
+          mailVisible = false;
+        } else {
+          $("#mail-div").load("email.txt");
+          mailVisible = true;
+        }
+        console.log(mailVisible);
       }
     </script>
     <!--[if lt IE 9]>
@@ -58,9 +69,15 @@
       </div>
 
       <div class="text-center">
+        <a href="#" onClick="showMail()" class="contact-me"><div id="mail-div">Ιδέα;</div></a>
+        <br />
+        <!-- Facebook Share Button -->
         <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fkafeskaivivlio.ml&layout=button&size=small&mobile_iframe=true&appId=1372483742769162&width=58&height=20" width="58" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        <!-- Facebook Share Button -->
       </div>
-      <br />
+
+
+      <!-- <br /> -->
       <div class="footer">
         <a href="https://twitter.com/dimnls" target="_blank"><img src="img/twitter.png" alt="Twitter" class="twitter"/>
           @dimnls
